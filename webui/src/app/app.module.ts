@@ -22,6 +22,8 @@ import { AddCardComponent } from './Components/admin/add-card/add-card.component
 import { EditCardComponent } from './Components/admin/edit-card/edit-card.component';
 import { DeleteCardComponent } from './Components/admin/delete-card/delete-card.component';
 import { AdminrouterComponent } from './Components/admin/adminrouter/adminrouter.component';
+import { NewPlayerComponent } from './Components/game/playground/new-player/new-player.component';
+import { OldPlayerComponent } from './Components/game/playground/old-player/old-player.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminrouterComponent } from './Components/admin/adminrouter/adminrouter
     AddCardComponent,
     EditCardComponent,
     DeleteCardComponent,
-    AdminrouterComponent
+    AdminrouterComponent,
+    NewPlayerComponent,
+    OldPlayerComponent
   ],
   imports: [
     BrowserModule,

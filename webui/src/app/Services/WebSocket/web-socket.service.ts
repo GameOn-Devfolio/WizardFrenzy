@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core';
-import * as io from 'socket.io-client';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Injectable } from '@angular/core'
+import * as io from 'socket.io-client'
+import { BehaviorSubject, Observable } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
 export class WebSocketService {
-  socket: SocketIOClient.Socket;
+  socket: SocketIOClient.Socket
   private OnlineUsers$: BehaviorSubject<string[]> = new BehaviorSubject<
     string[]
-  >([]);
+  >([])
   constructor() {
     // this.socket = io.connect('http://localhost:8000');
-    this.socket = io.connect('http://localhost:3010');
+    this.socket = io.connect('http://localhost:3010')
     // this.socket.on('Players', Users => {
     //   this.OnlineUsers$.next(Users);
     // });
@@ -34,20 +34,20 @@ export class WebSocketService {
     // });
   }
   UserIsOnline(address: string) {
-    this.socket.emit('UserOnline', address);
+    this.socket.emit('UserOnline', address)
   }
   OnlineUsers() {
-    let observable = new Observable(observer => {
+    let observable = new Observable((observer) => {
       this.socket.on('Players', (Users: string) => {
-        observer.next(Users);
-      });
+        observer.next(Users)
+      })
       return () => {
-        this.socket.disconnect();
-      };
-    });
-    return observable;
+        this.socket.disconnect()
+      }
+    })
+    return observable
   }
   UserIsOffline(address: string) {
-    this.socket.emit('UserOffline', address);
+    this.socket.emit('UserOffline', address)
   }
 }

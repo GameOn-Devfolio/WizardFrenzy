@@ -1,42 +1,43 @@
-import { PlaygroundComponent } from "./Components/game/playground/playground.component";
-import { GameComponent } from "./Components/game/game.component";
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { HomeComponent } from "./Components/home/home.component";
-import { HomeRouteComponent } from "./Components/home/home-route/home-route.component";
-import { AboutComponent } from "./Components/home/about/about.component";
-import { PlayerlistComponent } from "./Components/game/playground/playerlist/playerlist.component";
-import { AuthGuard } from "./Guards/Auth/auth.guard";
+import { PlaygroundComponent } from './Components/game/playground/playground.component'
+import { GameComponent } from './Components/game/game.component'
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
+import { HomeComponent } from './Components/home/home.component'
+import { HomeRouteComponent } from './Components/home/home-route/home-route.component'
+import { AboutComponent } from './Components/home/about/about.component'
+import { PlayerlistComponent } from './Components/game/playground/playerlist/playerlist.component'
+import { AuthGuard } from './Guards/Auth/auth.guard'
+import { NewPlayerComponent } from './Components/game/playground/new-player/new-player.component'
 
 const routes: Routes = [
   {
-    path: "",
-    redirectTo: "/Home",
-    pathMatch: "full"
+    path: '',
+    redirectTo: '/Home',
+    pathMatch: 'full'
   },
   {
-    path: "Home",
+    path: 'Home',
     component: HomeComponent,
     children: [
       {
-        path: "",
+        path: '',
         component: HomeRouteComponent,
-        pathMatch: "full"
+        pathMatch: 'full'
       },
       {
-        path: "About",
+        path: 'About',
         component: AboutComponent
       }
     ]
   },
   {
-    path: "Game",
+    path: 'Game',
     component: GameComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: "",
-        component: PlayerlistComponent
+        path: '',
+        component: NewPlayerComponent
       }
       // {
       //   path: "Playground",
@@ -55,7 +56,7 @@ const routes: Routes = [
       // }
     ]
   }
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
