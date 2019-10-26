@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, interval, Subscription } from 'rxjs'
 import { Web3Model } from '../../Models/web3.model'
 import { HttpClient } from '@angular/common/http'
-// import { WebSocketService } from '../WebSocket/web-socket.service'
+import { WebSocketService } from '../WebSocket/web-socket.service'
 declare let require: any
 
 const Web3 = require('web3')
@@ -10,16 +10,18 @@ const Web3 = require('web3')
 declare let window: any
 declare let ethereum: any
 declare let web3: any
-//const BaseUrl = 'http://' + window.location.hostname + ':3010/contracts/';
+// const BaseUrl = 'http://' + window.location.hostname + ':3010/contracts/';
 
-//anugalr service to loggin with metamask
+// anugalr service to loggin with metamask
 
 @Injectable({
   providedIn: 'root'
 })
 export class Web3Service {
-  constructor(private httpClient: HttpClient) {}
-  // private webSocketService: WebSocketService
+  constructor(
+    private httpClient: HttpClient,
+    private webSocketService: WebSocketService
+  ) {}
   public Web3Details$: BehaviorSubject<Web3Model> = new BehaviorSubject<
     Web3Model
   >({
@@ -59,10 +61,8 @@ export class Web3Service {
             this.Web3Details$.value.network !== Network ||
             this.Web3Details$.value.account !== Account
           ) {
-            // this.webSocketService.UserIsOffline(
-            //   this.Web3Details$.value.account
-            // );
-            // this.webSocketService.UserIsOnline(Account);
+            this.webSocketService.UserIsOffline(this.Web3Details$.value.account)
+            this.webSocketService.UserIsOnline(Account)
             this.Web3Details$.next({
               account: Account,
               network: Network
@@ -90,7 +90,7 @@ export class Web3Service {
   }
   // logout function
   public async web3logout() {
-    // this.webSocketService.UserIsOffline(this.Web3Details$.value.account);
+    this.webSocketService.UserIsOffline(this.Web3Details$.value.account)
     this.AccountSubscription.unsubscribe()
     this.Web3Details$.next({
       account: null,

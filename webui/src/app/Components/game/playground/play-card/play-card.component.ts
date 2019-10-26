@@ -1,15 +1,13 @@
-import { Component, OnInit } from "@angular/core";
-import { PlayCard } from "src/app/Models/playcard.model";
+import { Component, OnInit } from '@angular/core'
+import { PlayCard } from 'src/app/Models/playcard.model'
 
 @Component({
-  selector: "app-play-card",
-  templateUrl: "./play-card.component.html",
-  styleUrls: ["./play-card.component.scss"]
+  selector: 'app-play-card',
+  templateUrl: './play-card.component.html',
+  styleUrls: ['./play-card.component.scss']
 })
 export class PlayCardComponent implements OnInit {
   constructor() {}
-
-  ngOnInit() {}
   Cards: PlayCard[] = [
     {
       cardID: 1,
@@ -44,5 +42,7 @@ export class PlayCardComponent implements OnInit {
       totalOvers: 3,
       totalFourWickets: 3
     }
-  ];
+  ]
+
+  ngOnInit() {}
 }

@@ -1,3 +1,4 @@
-# CardCricks
+# WizardFrenzy
+
 nn
 ggg

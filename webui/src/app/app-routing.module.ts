@@ -37,7 +37,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: NewPlayerComponent
+        component: PlaygroundComponent
       }
       // {
       //   path: "Playground",

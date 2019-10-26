@@ -1,3 +1,14 @@
 <div class="playground">
-  <button mat-flat-button color="primary">Players List</button>
+  <app-player-status></app-player-status>
+  <mat-tab-group class="group">
+    <mat-tab label="Wizards">
+      <app-play-card></app-play-card>
+    </mat-tab>
+    <mat-tab label="Upgrade Spells">
+      <app-play-card></app-play-card>
+    </mat-tab>
+    <mat-tab label="History">
+      <app-play-card></app-play-card>
+    </mat-tab>
+  </mat-tab-group>
 </div>
