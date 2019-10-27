@@ -28,7 +28,11 @@ contract GameStart is Ownership {
         // transfer(msg.sender, 50);
         playerStatus[msg.sender] = true;
     }
-    
+    // passing playerflag for checking player status
+
+    function getPlayerStatus() public view returns( bool _status){
+        return playerStatus[msg.sender];
+    }
     // passing indexId of card being gambled, give contract address approval to transfer card to winner
     // both players need to call gameStart() individually
     function gameStart (address _player, uint256 _tokenId) public {
