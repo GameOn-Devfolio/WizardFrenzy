@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing'
 import { Component, OnInit } from '@angular/core'
 import { ContractService } from 'src/app/Services/Contracts/contract.service'
 
@@ -17,12 +18,16 @@ export class PlayerStatusComponent implements OnInit {
       this.account = accs
     })
   }
-  async newPlayer() {
-    const newPlayer = await this.Contract.methods.playerRegister().send({
-      from: this.account,
-      gas: 5000000
-    })
-    console.log(newPlayer)
+  newPlayer = async () => {
+    try {
+      const newPlayer = await this.Contract.methods.playerRegister().send({
+        from: this.account,
+        gas: 5000000
+      })
+      console.log(newPlayer)
+    } catch (error) {
+      console.log(error)
+    }
 
     // newPlayer.status ? this.listingRodDta() : alert('Code REd')
   }
