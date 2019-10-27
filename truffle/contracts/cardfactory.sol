@@ -8,48 +8,120 @@ contract CardFactory is Ownable {
     using SafeMath32 for uint32;
     using SafeMath16 for uint16;
     
-    event NewCard (uint cardId, string name, uint tokenId, uint16 totalMatches, uint16 totalCatches, uint16 totalRuns, uint16 strikeRate, uint16 totalCenturies, uint16 totalWickets, uint16 totalOvers, uint16 totalFourWickets);
+    event NewCard (uint cardId, string name, uint tokenId, uint16 category, uint16 spell_1, uint16 spell_2, uint16 spell_3, uint16 spell_4, uint16 spell_5);
     uint tokenDigits = 16;
     uint tokenModulus = 10 ** tokenDigits;
     
     struct Card {
         string name;
         uint tokenId;
-        uint16 totalMatches;
-        uint16 totalCatches;
-        uint16 totalRuns;
-        uint16 strikeRate;
-        uint16 totalCenturies;
-        uint16 totalWickets;
-        uint16 totalOvers;
-        uint16 totalFourWickets;
+        uint16 category;
+        uint16 spell_1;
+        uint16 spell_2;
+        uint16 spell_3;
+        uint16 spell_4;
+        uint16 spell_5;
     }
     
     Card[] public cards;
-    
-    mapping (uint => address) public cardOwner;
+    // Mapping by index
+    // mapping (uint => address) public cardOwner;
+     // Mapping by index
+    mapping (uint => uint) public cardIndex;
     mapping (address => uint) public ownerCardCount;
     mapping (address => uint) public ownerLevel;
     mapping (address => uint) ownerWins;
     mapping (address => uint) ownerLosses;
     mapping (address => uint) public ownerScore;
+    //Mapping by tokenId
+    mapping (uint => address) public cardOwnership;
     uint public roundsCounter = 0;
+    bool oddEven = false;
     
-    function _createCard (string memory _name, uint _tokenId, uint16 _totalMatches, uint16 _totalCatches, uint16 _totalRuns, uint16 _strikeRate, uint16 _totalCenturies, uint16 _totalWickets, uint16 _totalOvers, uint16 _totalFourWickets) internal {
-        uint indexId = cards.push(Card(_name, _tokenId, _totalMatches, _totalCatches, _totalRuns, _strikeRate, _totalCenturies, _totalWickets, _totalOvers, _totalFourWickets)) - 1;
-        cardOwner[indexId] = msg.sender;
+    function _createCard (string memory _name, uint _tokenId, uint16 _category, uint16 _spell_1, uint16 _spell_2, uint16 _spell_3, uint16 _spell_4, uint16 _spell_5) internal {
+        uint indexId = cards.push(Card(_name, _tokenId, _category, _spell_1, _spell_2, _spell_3, _spell_4, _spell_5)) - 1;
+        // cardOwner[indexId] = msg.sender;
+        cardIndex[_tokenId] = indexId;
+        cardOwnership[_tokenId] = msg.sender;
         ownerCardCount[msg.sender] = ownerCardCount[msg.sender].add(1);
-        emit NewCard(indexId, _name, _tokenId, _totalMatches, _totalCatches, _totalRuns, _strikeRate, _totalCenturies, _totalWickets, _totalOvers, _totalFourWickets);
+        emit NewCard(indexId, _name, _tokenId, _category, _spell_1, _spell_2, _spell_3, _spell_4, _spell_5);
     }
     
-    function _generateRandomToken (string memory _str) private view returns (uint) {
-        uint rand = uint(keccak256(abi.encodePacked(_str)));
+    function _generateRandomToken (string memory _str, uint _category) private view returns (uint) {
+        uint rand = uint(keccak256(abi.encodePacked(_str, now, _category)));
         return rand % tokenModulus;
     }
     
-    function createRandomCard (string memory _name, uint16 _totalMatches, uint16 _totalCatches, uint16 _totalRuns, uint16 _strikeRate, uint16 _totalCenturies, uint16 _totalWickets, uint16 _totalOvers, uint16 _totalFourWickets) public {
-        uint randToken = _generateRandomToken(_name);
+    function createRandomCard (string memory _name, uint16 _category) public {
+        uint randToken = _generateRandomToken(_name, _category);
         randToken = randToken - randToken % 100;
-        _createCard(_name, randToken, _totalMatches, _totalCatches, _totalRuns, _strikeRate, _totalCenturies, _totalWickets, _totalOvers, _totalFourWickets);
+        if (oddEven == true) {
+            _createCard(_name, randToken, _category, 5, 10, 10, 5, 10);
+            oddEven = false;
+        }
+        else {
+             _createCard(_name, randToken, _category, 10, 5, 5, 10, 5);
+             oddEven = true;
+        }
     }
+    function upgradeCard (uint _tokenId) payable public {
+        require(msg.sender == cardOwnership[_tokenId], "Only Card owner can upgrade!");
+        address player = msg.sender;
+        // address payable ownerContract = address(_owner); 
+        require(player.balance > 10 ether, "Player funds not sufficient!");
+        uint indexTemp = cardIndex[_tokenId];
+        if (oddEven == true) {
+            if ((cards[indexTemp].spell_1 + 3) > 100) {
+                cards[indexTemp].spell_1 = 100;
+            }
+            else {
+                cards[indexTemp].spell_1 += 3;
+            }
+            if ((cards[indexTemp].spell_2 + 2) > 100) {
+                cards[indexTemp].spell_2 = 100;
+            }
+            else {
+                cards[indexTemp].spell_2 += 2;
+            }
+            if ((cards[indexTemp].spell_5 + 4) > 100) {
+                cards[indexTemp].spell_5 = 100;
+            }
+            else {
+                cards[indexTemp].spell_5 += 4;
+            }
+            oddEven = false;
+        }
+        else {
+            if ((cards[indexTemp].spell_2 + 3) > 100) {
+                cards[indexTemp].spell_2 = 100;
+            }
+            else {
+                cards[indexTemp].spell_2 += 3;
+            }
+            if ((cards[indexTemp].spell_3 + 2) > 100) {
+                cards[indexTemp].spell_3 = 100;
+            }
+            else {
+                cards[indexTemp].spell_3 += 2;
+            }
+            if ((cards[indexTemp].spell_4 + 4) > 100) {
+                cards[indexTemp].spell_4 = 100;
+            }
+            else {
+                cards[indexTemp].spell_4 += 4;
+            }
+            oddEven = true;
+            // Transfer of Matic tokens to be handle in Dapp
+            // ownerContract.transfer(10 ether);
+        }
+    }
+    // function checkUpgrade (uint _indexId, uint _spell, uint _upgradeCount) internal {
+    //     uint newSpell = cards[_indexId]._spell + _upgradeCount;
+    //     if (newSpell > 100) {
+    //         cards[_indexId]._spell = 100;
+    //     }
+    //     else {
+    //         cards[_indexId].._spell = newSpell;
+    //     }
+    // }
 }
