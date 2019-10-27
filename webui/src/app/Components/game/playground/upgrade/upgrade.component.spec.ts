@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PlayCardComponent } from './play-card.component';
+import { UpgradeComponent } from './upgrade.component';
 
-describe('PlayCardComponent', () => {
-  let component: PlayCardComponent;
-  let fixture: ComponentFixture<PlayCardComponent>;
+describe('UpgradeComponent', () => {
+  let component: UpgradeComponent;
+  let fixture: ComponentFixture<UpgradeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayCardComponent ]
+      declarations: [ UpgradeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlayCardComponent);
+    fixture = TestBed.createComponent(UpgradeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

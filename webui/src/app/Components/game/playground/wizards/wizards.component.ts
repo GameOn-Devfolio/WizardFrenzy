@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core'
 import { PlayCard } from 'src/app/Models/playcard.model'
 
 @Component({
-  selector: 'app-play-card',
-  templateUrl: './play-card.component.html',
-  styleUrls: ['./play-card.component.scss']
+  selector: 'app-wizards',
+  templateUrl: './wizards.component.html',
+  styleUrls: ['./wizards.component.scss']
 })
-export class PlayCardComponent implements OnInit {
+export class WizardsComponent implements OnInit {
   constructor() {}
   Cards: PlayCard[] = [
     {
@@ -43,6 +43,5 @@ export class PlayCardComponent implements OnInit {
       totalFourWickets: 3
     }
   ]
-
   ngOnInit() {}
 }

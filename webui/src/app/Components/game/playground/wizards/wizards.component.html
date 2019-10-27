@@ -3,9 +3,7 @@
     <mat-card-header> </mat-card-header>
     <img
       mat-card-image
-      src="http://wearecodex.com/steem-avatars/avatar-minnow.php?seed={{
-        card.totalMatches
-      }}"
+      src="https://robohash.org/{{ card.totalMatches }}.png?set=set2"
       alt="Fish"
     />
     <mat-card-content>
@@ -22,11 +20,6 @@
           </mat-grid-tile>
           <mat-grid-tile>
             <p>Strike Rate : {{ card.strikeRate }}</p>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-card-actions style="margin: 10px;">
-              <button mat-button>Upgrade Card</button>
-            </mat-card-actions>
           </mat-grid-tile>
         </mat-grid-list>
       </div>
