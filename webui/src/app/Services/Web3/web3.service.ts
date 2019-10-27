@@ -1,3 +1,4 @@
+import { ContractService } from 'src/app/Services/Contracts/contract.service'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, interval, Subscription } from 'rxjs'
 import { Web3Model } from '../../Models/web3.model'
@@ -20,7 +21,8 @@ declare let web3: any
 export class Web3Service {
   constructor(
     private httpClient: HttpClient,
-    private webSocketService: WebSocketService
+    private webSocketService: WebSocketService,
+    private _ContractService: ContractService
   ) {}
   public Web3Details$: BehaviorSubject<Web3Model> = new BehaviorSubject<
     Web3Model
@@ -112,6 +114,7 @@ export class Web3Service {
         if (accs.length === 0) {
           resolve(null)
         } else {
+          this._ContractService.updateAccount(accs[0])
           resolve(accs[0])
         }
       })
