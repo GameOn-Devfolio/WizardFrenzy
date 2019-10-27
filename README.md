@@ -31,8 +31,8 @@ Players can battle with other players by choosing one Wizard. The player has to 
 **Step 1:** Download the repostory using the command:
 
 ```
- git clone "git@github.com:GameOn-Devfolio/FishingFrenzy.git"
- cd FishingFrenzy
+ git clone "https://github.com/GameOn-Devfolio/WizardFrenzy.git"
+ cd WizardFrenzy
 ```
 
 **Step 2:** Install the dependecies using the command:
@@ -46,3 +46,10 @@ Players can battle with other players by choosing one Wizard. The player has to 
 ```
 truffle migrate --network matic --reset
 
+```
+**Run On Ganache **
+```
+ganache-cli
+
+truffle migrate --reset
+```
