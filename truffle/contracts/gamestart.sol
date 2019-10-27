@@ -33,6 +33,20 @@ contract GameStart is Ownership {
     function getPlayerStatus() public view returns( bool _status){
         return playerStatus[msg.sender];
     }
+    // Function to buy Card from Marketplace
+    function buyFromMarket (uint256 _tokenId) public payable {
+        require(msg.sender != _owner, "Deployer cannot buy Cards!");
+        uint256 indexIdTemp = cardIndex[_tokenId];
+        uint256 cardRate = cards[indexIdTemp].category.mul(10);
+        if (msg.sender.balance >= cardRate) {
+            deployer.transfer(cardRate);
+            // transferFrom(_owner, msg.sender, _tokenId);
+            ownerCardCount[msg.sender] = ownerCardCount[msg.sender].add(1);
+            ownerCardCount[_owner] = ownerCardCount[_owner].sub(1);
+            cardOwnership[_tokenId] = msg.sender;
+        }
+    }
+    
     // passing indexId of card being gambled, give contract address approval to transfer card to winner
     // both players need to call gameStart() individually
     function gameStart (address _player, uint256 _tokenId) public {
