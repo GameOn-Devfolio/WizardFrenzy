@@ -1,20 +1,15 @@
 # WizardFrenzy
 
-### Contract steps
+### Websocket Server
 
-Deploy gamestart.sol
+To start Websocket Server
 
-Execute function playerRegister() first for player1 (address1 in Remix). Creates 5 random cards for player1.
-Execute function playerRegister() for player2 (address2 in Remix). Creates 5 random cards for player2.
+**cd Server**
+**npm install**
+**npm start**
 
-Check card details of any card from 0 - 4 for player1 cards using getter function cards() (choose one tokenId to gamble).
+### Start Game
 
-Check card details of any card from 5 - 9 for player2 cards using getter function cards() (choose one tokenId to gamble).
+copy the content of 'web-mobile' folder to any Web Server.
 
-Execute function gameStart() for player1 address with selected Card.
-
-Execute function gameStart() for player2 address with selected Card.
-
-~~Both gambled tokens move to Contract Address while game is live.~~
-
-Execute function gameOver() with winner & loser addresses to end the game, and send ~~cards~~ loser cards to winner. Function needs to be called by loser address (msg.sender) to winner.
+start Game.
