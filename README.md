@@ -3,7 +3,7 @@
 [Live Link](https://fishingfrenzy-rinkeby.netlify.com/)
 
 To view in Matic explorer:
-Deployed Contract Address: 0x70Bb0D7FAdAB5ecdc2A636462200eC71e47331b4
+Deployed Contract Address: 0xf9a7f76cb9caecbc529b6a9188274a2e50034db5
 
 [Matic Explorer Link](https://explorer.testnet2.matic.network/address/0xf9a7f76cb9caecbc529b6a9188274a2e50034db5/transactions)
 
