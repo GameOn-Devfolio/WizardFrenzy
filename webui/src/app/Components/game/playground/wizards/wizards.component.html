@@ -6,20 +6,26 @@
       src="https://robohash.org/{{ card.totalMatches }}.png?set=set2"
       alt="Fish"
     />
+    <p style="margin-left:25%;">Active Spells</p>
     <mat-card-content>
       <div class="properties">
         <mat-grid-list cols="1" rowHeight="30px">
           <mat-grid-tile>
-            <p>Total Matches : {{ card.totalMatches }}</p>
+            <p>Bat-Bogey : {{ card.totalMatches }}</p>
           </mat-grid-tile>
           <mat-grid-tile>
-            <p>Total Catches : {{ card.totalCatches }}</p>
+            <p>Incarcerous : {{ card.totalCatches }}</p>
           </mat-grid-tile>
           <mat-grid-tile>
-            <p>Total Runs : {{ card.totalRuns }}</p>
+            <p>Confringo : {{ card.totalRuns }}</p>
           </mat-grid-tile>
           <mat-grid-tile>
-            <p>Strike Rate : {{ card.strikeRate }}</p>
+            <p>Stupefy : {{ card.strikeRate }}</p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <mat-card-actions style="margin: 10px;">
+              <button mat-button>Upgrade Card</button>
+            </mat-card-actions>
           </mat-grid-tile>
         </mat-grid-list>
       </div>
