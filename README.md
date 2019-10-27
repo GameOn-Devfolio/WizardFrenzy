@@ -1,20 +1,48 @@
 # WizardFrenzy
 
-### Contract steps
+[Live Link](https://fishingfrenzy-rinkeby.netlify.com/)
 
-Deploy gamestart.sol
+To view in Matic explorer:
+Deployed Contract Address: 0x70Bb0D7FAdAB5ecdc2A636462200eC71e47331b4
 
-Execute function playerRegister() first for player1 (address1 in Remix). Creates 5 random cards for player1.
-Execute function playerRegister() for player2 (address2 in Remix). Creates 5 random cards for player2.
+[Matic Explorer Link](https://explorer.testnet2.matic.network/address/0x70bb0d7fadab5ecdc2a636462200ec71e47331b4/transactions)
 
-Check card details of any card from 0 - 4 for player1 cards using getter function cards() (choose one tokenId to gamble).
 
-Check card details of any card from 5 - 9 for player2 cards using getter function cards() (choose one tokenId to gamble).
+[Video Demo](https://youtu.be/SnMnXaY3r0M)
 
-Execute function gameStart() for player1 address with selected Card.
 
-Execute function gameStart() for player2 address with selected Card.
+WizardFrenzy is a multiplayer game, built as a decentralized application on the Ethereum blockchain.
+Players can log in using their Ethereum account, and will receive 5 Wizards (ERC-721 NFTs). Players can upgrade the Wizard's spells by paying Ether, or they can buy new Wizards from the Marketplace using Ether.
 
-~~Both gambled tokens move to Contract Address while game is live.~~
+Players can battle with other players by choosing one Wizard. The player has to choose which spell to battle with, and the winner of the battle will receive the loser's Wizard (NFT), score on the leaderboard, and bragging rights!
 
-Execute function gameOver() with winner & loser addresses to end the game, and send ~~cards~~ loser cards to winner. Function needs to be called by loser address (msg.sender) to winner.
+## Requirements
+
+- Ubuntu
+- Build-essential packages
+- [Node.js](https://nodejs.org/) Version 10.15.3
+- Angular 8
+- [Truffle](https://www.trufflesuite.com/docs/truffle/overview)
+- [Geth](https://www.trufflesuite.com/docs/truffle/overview)
+- MetaMask Enabled Browser
+
+## Setting Up:
+
+**Step 1:** Download the repostory using the command:
+
+```
+ git clone "git@github.com:GameOn-Devfolio/FishingFrenzy.git"
+ cd FishingFrenzy
+```
+
+**Step 2:** Install the dependecies using the command:
+
+```
+ npm Install
+```
+**Step 3:** Use the following command to run Smart Contract (follow one of the below, and then move to Step 4):
+
+**Run On Matic **
+```
+truffle migrate --network matic --reset
+
