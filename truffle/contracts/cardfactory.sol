@@ -37,6 +37,7 @@ contract CardFactory is Ownable {
     mapping (uint => address) public cardOwnership;
     uint public roundsCounter = 0;
     bool oddEven = false;
+    address payable deployer;
     
     function _createCard (string memory _name, uint _tokenId, uint16 _category, uint16 _spell_1, uint16 _spell_2, uint16 _spell_3, uint16 _spell_4, uint16 _spell_5) internal {
         uint indexId = cards.push(Card(_name, _tokenId, _category, _spell_1, _spell_2, _spell_3, _spell_4, _spell_5)) - 1;
@@ -115,6 +116,29 @@ contract CardFactory is Ownable {
             // ownerContract.transfer(10 ether);
         }
     }
+    
+    function marketplaceCards () public {
+        require(msg.sender == _owner, "Only Deployer can call this function!");
+        deployer = msg.sender;
+        createRandomCard ("Neville", 1);
+        createRandomCard ("Luna", 1);
+        createRandomCard ("George", 1);
+        createRandomCard ("Fred", 1);
+        createRandomCard ("Cho", 1);
+        createRandomCard ("Harry", 2);
+        createRandomCard ("Ron", 2);
+        createRandomCard ("Hermione", 2);
+        createRandomCard ("Draco", 2);
+        createRandomCard ("Severus", 3);
+        createRandomCard ("McGonagall", 3);
+        createRandomCard ("Sirius", 3);
+        createRandomCard ("Moody", 3);
+        createRandomCard ("Lupin", 3);
+        createRandomCard ("Albus", 4);
+        createRandomCard ("Grindelwald", 4);
+        createRandomCard ("Voldemort", 4);
+    }
+    
     // function checkUpgrade (uint _indexId, uint _spell, uint _upgradeCount) internal {
     //     uint newSpell = cards[_indexId]._spell + _upgradeCount;
     //     if (newSpell > 100) {
