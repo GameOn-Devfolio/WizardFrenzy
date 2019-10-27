@@ -5,10 +5,12 @@
 To view in Matic explorer:
 Deployed Contract Address: 0x70Bb0D7FAdAB5ecdc2A636462200eC71e47331b4
 
-[Matic Explorer Link](https://explorer.testnet2.matic.network/address/0x70bb0d7fadab5ecdc2a636462200ec71e47331b4/transactions)
+[Matic Explorer Link](https://explorer.testnet2.matic.network/address/0xf9a7f76cb9caecbc529b6a9188274a2e50034db5/transactions)
 
 
-[Video Demo](https://youtu.be/SnMnXaY3r0M)
+[Video Demo done in Cocos](https://www.youtube.com/watch?v=0XZVOUNbmOU)
+
+## For Cocos execution, please check branch Cocos and follow instructions in the ReadMe
 
 
 WizardFrenzy is a multiplayer game, built as a decentralized application on the Ethereum blockchain.
@@ -40,7 +42,7 @@ Players can battle with other players by choosing one Wizard. The player has to 
 ```
  npm Install
 ```
-**Step 3:** Use the following command to run Smart Contract (follow one of the below, and then move to Step 4):
+**Step 3:** 
 
 **Run On Matic **
 ```
