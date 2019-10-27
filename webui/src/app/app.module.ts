@@ -15,15 +15,16 @@ import { HttpClientModule } from '@angular/common/http'
 import { PlaygroundComponent } from './Components/game/playground/playground.component'
 import { PlayerlistComponent } from './Components/game/playground/playerlist/playerlist.component'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2'
-import { PlayCardComponent } from './Components/game/playground/play-card/play-card.component'
-import { SelectCardsComponent } from './Components/game/playground/select-cards/select-cards.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { AddCardComponent } from './Components/admin/add-card/add-card.component'
 import { EditCardComponent } from './Components/admin/edit-card/edit-card.component'
 import { DeleteCardComponent } from './Components/admin/delete-card/delete-card.component'
 import { AdminrouterComponent } from './Components/admin/adminrouter/adminrouter.component'
-import { NewPlayerComponent } from './Components/game/playground/new-player/new-player.component';
 import { PlayerStatusComponent } from './Components/game/playground/player-status/player-status.component'
+import { WizardsComponent } from './Components/game/playground/wizards/wizards.component'
+import { UpgradeComponent } from './Components/game/playground/upgrade/upgrade.component'
+import { HistoryComponent } from './Components/game/playground/history/history.component'
+import { BattleComponent } from './Components/game/playground/battle/battle.component'
 
 @NgModule({
   declarations: [
@@ -35,14 +36,15 @@ import { PlayerStatusComponent } from './Components/game/playground/player-statu
     AboutComponent,
     PlaygroundComponent,
     PlayerlistComponent,
-    PlayCardComponent,
-    SelectCardsComponent,
     AddCardComponent,
     EditCardComponent,
     DeleteCardComponent,
     AdminrouterComponent,
-    NewPlayerComponent,
-    PlayerStatusComponent
+    PlayerStatusComponent,
+    WizardsComponent,
+    UpgradeComponent,
+    HistoryComponent,
+    BattleComponent
   ],
   imports: [
     BrowserModule,

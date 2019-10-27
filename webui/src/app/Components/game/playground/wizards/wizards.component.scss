@@ -1,0 +1,8 @@
+.card {
+  display: flex;
+  flex-direction: row;
+  .example-card {
+    max-width: 200px;
+    margin: 5px;
+  }
+}

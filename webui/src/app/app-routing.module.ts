@@ -5,9 +5,7 @@ import { Routes, RouterModule } from '@angular/router'
 import { HomeComponent } from './Components/home/home.component'
 import { HomeRouteComponent } from './Components/home/home-route/home-route.component'
 import { AboutComponent } from './Components/home/about/about.component'
-import { PlayerlistComponent } from './Components/game/playground/playerlist/playerlist.component'
 import { AuthGuard } from './Guards/Auth/auth.guard'
-import { NewPlayerComponent } from './Components/game/playground/new-player/new-player.component'
 
 const routes: Routes = [
   {
