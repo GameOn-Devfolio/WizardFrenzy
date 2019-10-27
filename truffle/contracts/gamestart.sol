@@ -39,27 +39,27 @@ contract GameStart is Ownership {
         gambledCard[_player] = _tokenId;
         // Approve contract address to transfer Card to winner
         approve(address(this), _tokenId);
-        transferFrom(_player, address(this), _tokenId);
+        // transferFrom(_player, address(this), _tokenId);
         if (playerCount == 2) {
             gameStatus = true;
         }
     }
     
-    function gameOver (address _winner, address _loser, uint256 _winningScore) public payable {
+    function gameOver (address _winner, address _loser, uint256 _winningScore) public {
         require (gameStatus == true, "Game is not live, cannot end game!!");
         playerCount = 0;
         gameStatus = false;
         playerFlag[_winner] = false;
         playerFlag[_loser] = false;
-        uint256 winnerToken = gambledCard[_winner];
+        // uint256 winnerToken = gambledCard[_winner];
         ownerWins[_winner] += 1;
         ownerLosses[_loser] += 1;
         ownerScore[_winner] += _winningScore;
         uint256 loserToken = gambledCard[_loser];
         // address contractAddress = address(this);
         // Loser's card goes to winner from contract address
-        transferFrom(address(this), _winner, loserToken);
+        transferFrom(_loser, _winner, loserToken);
         // Winner's card returns to winner from contract address
-        transferFrom(address(this), _winner, winnerToken);
+        // transferFrom(address(this), _winner, winnerToken);
     }
 }
