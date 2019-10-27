@@ -15,6 +15,6 @@ Execute function gameStart() for player1 address with selected Card.
 
 Execute function gameStart() for player2 address with selected Card.
 
-Both gambled tokens move to Contract Address while game is live.
+~~Both gambled tokens move to Contract Address while game is live.~~
 
-Execute function gameOver() with winner & loser addresses to end the game, and send cards to winner.
+Execute function gameOver() with winner & loser addresses to end the game, and send ~~cards~~ loser cards to winner. Function needs to be called by loser address (msg.sender) to winner.
