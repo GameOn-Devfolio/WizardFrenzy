@@ -15,8 +15,8 @@ contract GameStart is Ownership {
     
     mapping (address => bool) playerFlag;
     
-    function playerRegister (address _player) public {
-        require(playerStatus[_player] == false, "Player already registered!");
+    function playerRegister () public {
+        require(playerStatus[msg.sender] == false, "Player already registered!");
         // totalPlayers.push(_player);
         // Assign 5 cards to new player
         createRandomCard ("Neville", 1);
@@ -26,7 +26,7 @@ contract GameStart is Ownership {
         createRandomCard ("Lupin", 3);
         // Credit 50 WFTs to new player
         // transfer(msg.sender, 50);
-        playerStatus[_player] = true;
+        playerStatus[msg.sender] = true;
     }
     
     // passing indexId of card being gambled, give contract address approval to transfer card to winner
@@ -45,13 +45,16 @@ contract GameStart is Ownership {
         }
     }
     
-    function gameOver (address _winner, address _loser) public payable {
+    function gameOver (address _winner, address _loser, uint256 _winningScore) public payable {
         require (gameStatus == true, "Game is not live, cannot end game!!");
         playerCount = 0;
         gameStatus = false;
         playerFlag[_winner] = false;
         playerFlag[_loser] = false;
         uint256 winnerToken = gambledCard[_winner];
+        ownerWins[_winner] += 1;
+        ownerLosses[_loser] += 1;
+        ownerScore[_winner] += _winningScore;
         uint256 loserToken = gambledCard[_loser];
         // address contractAddress = address(this);
         // Loser's card goes to winner from contract address

@@ -30,8 +30,8 @@ contract CardFactory is Ownable {
     mapping (uint => uint) public cardIndex;
     mapping (address => uint) public ownerCardCount;
     mapping (address => uint) public ownerLevel;
-    mapping (address => uint) ownerWins;
-    mapping (address => uint) ownerLosses;
+    mapping (address => uint) public ownerWins;
+    mapping (address => uint) public ownerLosses;
     mapping (address => uint) public ownerScore;
     //Mapping by tokenId
     mapping (uint => address) public cardOwnership;
